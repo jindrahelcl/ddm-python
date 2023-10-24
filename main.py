@@ -8,6 +8,12 @@ def ctverec(velikost):
         left(90)
         forward(velikost)
 
+
+def trojuhelnik():
+    for i in range(3):
+        forward(60)
+        left(60)
+
 def otazka():
     tvar = ""
     while tvar != "čtverec" and tvar != "trojúhelník":

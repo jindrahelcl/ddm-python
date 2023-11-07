@@ -1,0 +1,18 @@
+[submodule "zoe"]
+	path = zoe
+	url = https://github.com/zoenovackova/ondra1.4
+[submodule "matyas"]
+	path = matyas
+	url = https://github.com/MatyasKopet/pythonProject
+[submodule "joshua"]
+	path = joshua
+	url = https://github.com/motolikdoprava/pismena
+[submodule "patrick"]
+	path = patrick
+	url = https://github.com/ezik489/something
+[submodule "honza-p"]
+	path = honza-p
+	url = https://github.com/Geganek/pythonProject
+[submodule "petr"]
+	path = petr
+	url = https://github.com/okinlook/pythonProject

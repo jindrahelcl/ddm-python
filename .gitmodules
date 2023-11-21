@@ -19,3 +19,6 @@
 [submodule "ondra-h"]
 	path = ondra-h
 	url = https://github.com/k9k9s/ondra
+[submodule "honza-m"]
+	path = honza-m
+	url = https://github.com/honzamar77/pismena

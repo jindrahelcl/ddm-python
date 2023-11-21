@@ -161,9 +161,9 @@ def pismeno_l():
 
 
 # Patrick
-def letter_H():
+def pismeno_h():
     left(90)
-    forward(50)
+    forward(100)
     left(180)
     forward(100)
     left(180)
@@ -203,11 +203,7 @@ def pismeno_a():
     left(90)
 
 def pismeno_x():
-    penup()
-    right(30)
-    forward(60)
-    right(90)
-    pendown()
+    left(60)
     forward(120)
     right(180)
     forward(60)
@@ -215,9 +211,7 @@ def pismeno_x():
     forward(60)
     right(180)
     forward(120)
-    right(180)
-    forward(120)
-    left(90)
+    left(60)
 
 
 # Zoe
@@ -250,25 +244,23 @@ def pismeno_r():
     forward(65)
     left(50)
 
-
-
 def pismeno_s():
     penup()
     left(90)
-    forward(80)
+    forward(115)
     right(90)
-    forward(50)
+    forward(30)
     left(175)
     pendown()
-    for i in range(180):
-        left(1)
-        forward(0.5)
-    for i in range(180):
-        right(1)
-        forward(0.5)
+    for i in range(90):
+        left(2)
+        forward(1)
+    for i in range(90):
+        right(2)
+        forward(1)
     penup()
-    left(180)
-    forward(60)
+    left(185)
+    forward(30)
     pendown()
 
 

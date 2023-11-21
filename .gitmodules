@@ -16,3 +16,6 @@
 [submodule "petr"]
 	path = petr
 	url = https://github.com/okinlook/pythonProject
+[submodule "ondra-h"]
+	path = ondra-h
+	url = https://github.com/k9k9s/ondra

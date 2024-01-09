@@ -40,7 +40,7 @@ while not hotovo():
     if vstup == "x":
         skore += zlato[hrac]
         zlato[hrac] = 0
-    if vstup == "k":
+    elif vstup == "k":
         ma_klic = True
         klic = -1
     else:

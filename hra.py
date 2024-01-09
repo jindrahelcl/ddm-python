@@ -26,7 +26,11 @@ while not hotovo():
         print("Moznost X : sebrat", zlato[hrac], "zlata")
 
     if hrac == klic:
-        print("Moznost K: sebrat klíč")
+        print("Moznost K : sebrat klíč")
+
+    if ma_klic and zamcene_chodby[hrac]:
+        print("Moznost O : odemknout dveře ->", mistnosti[zamcene_chodby[hrac][-1]])
+
 
     vstup = input("> ")
     # vstup_ok = False
@@ -43,6 +47,10 @@ while not hotovo():
     elif vstup == "k":
         ma_klic = True
         klic = -1
+    elif vstup == "o":
+        cilova_mistnost = zamcene_chodby[hrac].pop()
+        chodby[hrac].append(cilova_mistnost)
+        print("Slyšíš jak cvaknul zámek a dveře se otevřely.")
     else:
         index_moznosti = int(vstup) - 1
         hrac = kam_lze_jit[index_moznosti]

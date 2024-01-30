@@ -19,27 +19,28 @@ while not hotovo():
     print("zbývá zlata:", sum(zlato))
 
     kam_lze_jit = chodby[hrac]
+    ok_vstupy = []
+
     for i, moznost in enumerate(kam_lze_jit):
         print("Moznost", i + 1, ": ", mistnosti[moznost])
+        ok_vstupy.append(str(i + 1))
 
     if zlato[hrac] > 0:
         print("Moznost X : sebrat", zlato[hrac], "zlata")
+        ok_vstupy.append("x")
 
     if hrac == klic:
         print("Moznost K : sebrat klíč")
+        ok_vstupy.append("k")
 
     if ma_klic and zamcene_chodby[hrac]:
         print("Moznost O : odemknout dveře ->", mistnosti[zamcene_chodby[hrac][-1]])
-
+        ok_vstupy.append("o")
 
     vstup = input("> ")
-    # vstup_ok = False
-    # while not vstup_ok:
-    #     vstup = input("> ")
-    #
-    #     if vstup == "x" and zlato[hrac] > 0:
-    #         vstup_ok = True
-    #         break
+    while not vstup in ok_vstupy:
+        print("Špatný vstup.")
+        vstup = input("> ")
 
     if vstup == "x":
         skore += zlato[hrac]

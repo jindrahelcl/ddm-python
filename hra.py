@@ -2,20 +2,19 @@ mistnosti = ["obývák", "chodba", "sklep", "trůnní sál"]
 chodby = [[1, 2], [0], [0], [1, 2]]
 zamcene_chodby = [[], [3], [], []]
 klic = 2
-
 zlato = [1, 0, 10, 300]
 
+inventar = {"klic": False, "skore": 0}
+
 hrac = 0
-skore = 0
 kroky = 0
-ma_klic = False
 
 def hotovo():
     return sum(zlato) == 0
 
 while not hotovo():
     print("hráč je v místnosti:", mistnosti[hrac])
-    print("hráč má", skore, "zlata")
+    print("hráč má", inventar["skore"], "zlata")
     print("zbývá zlata:", sum(zlato))
 
     kam_lze_jit = chodby[hrac]
@@ -33,7 +32,7 @@ while not hotovo():
         print("Moznost K : sebrat klíč")
         ok_vstupy.append("k")
 
-    if ma_klic and zamcene_chodby[hrac]:
+    if inventar["klic"] and zamcene_chodby[hrac]:
         print("Moznost O : odemknout dveře ->", mistnosti[zamcene_chodby[hrac][-1]])
         ok_vstupy.append("o")
 
@@ -43,10 +42,10 @@ while not hotovo():
         vstup = input("> ")
 
     if vstup == "x":
-        skore += zlato[hrac]
+        inventar["skore"] += zlato[hrac]
         zlato[hrac] = 0
     elif vstup == "k":
-        ma_klic = True
+        inventar["klic"] = True
         klic = -1
     elif vstup == "o":
         cilova_mistnost = zamcene_chodby[hrac].pop()
@@ -59,4 +58,4 @@ while not hotovo():
     kroky += 1
     #break
 
-print("Gratuluju, sebral jsi celkem,", skore, "zlata za", kroky, "kroků")
+print("Gratuluju, sebral jsi celkem,", inventar["skore"], "zlata za", kroky, "kroků")

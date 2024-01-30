@@ -1,61 +1,69 @@
-mistnosti = ["obývák", "chodba", "sklep", "trůnní sál"]
-chodby = [[1, 2], [0], [0], [1, 2]]
-zamcene_chodby = [[], [3], [], []]
-klic = 2
-zlato = [1, 0, 10, 300]
+from lokace import *
 
-inventar = {"klic": False, "skore": 0}
-
-hrac = 0
+inventar = {"klic": False}
+skore = 0
 kroky = 0
 
-def hotovo():
-    return sum(zlato) == 0
+hrad = Hrad()
+posta = Posta()
 
-while not hotovo():
-    print("hráč je v místnosti:", mistnosti[hrac])
-    print("hráč má", inventar["skore"], "zlata")
-    print("zbývá zlata:", sum(zlato))
+def hotovo(level):
+    return sum(level.zlato) == 0
 
-    kam_lze_jit = chodby[hrac]
-    ok_vstupy = []
+for level in [hrad, posta]:
+    hrac = 0
+    print("Vítej v levelu", level.jmeno)
 
-    for i, moznost in enumerate(kam_lze_jit):
-        print("Moznost", i + 1, ": ", mistnosti[moznost])
-        ok_vstupy.append(str(i + 1))
+    while not hotovo(level):
+        print("hráč je v místnosti:", level.mistnosti[hrac])
+        print("hráč má", skore, "zlata")
+        print("zbývá zlata:", sum(level.zlato))
 
-    if zlato[hrac] > 0:
-        print("Moznost X : sebrat", zlato[hrac], "zlata")
-        ok_vstupy.append("x")
+        kam_lze_jit = level.chodby[hrac]
+        ok_vstupy = ["cheat"]
 
-    if hrac == klic:
-        print("Moznost K : sebrat klíč")
-        ok_vstupy.append("k")
+        for i, moznost in enumerate(kam_lze_jit):
+            print("Moznost", i + 1, ": ", level.mistnosti[moznost])
+            ok_vstupy.append(str(i + 1))
 
-    if inventar["klic"] and zamcene_chodby[hrac]:
-        print("Moznost O : odemknout dveře ->", mistnosti[zamcene_chodby[hrac][-1]])
-        ok_vstupy.append("o")
+        if level.zlato[hrac] > 0:
+            print("Moznost X : sebrat", level.zlato[hrac], "zlata")
+            ok_vstupy.append("x")
 
-    vstup = input("> ")
-    while not vstup in ok_vstupy:
-        print("Špatný vstup.")
+        if hrac == level.klic:
+            print("Moznost K : sebrat klíč")
+            ok_vstupy.append("k")
+
+        if inventar["klic"] and level.zamcene_chodby[hrac]:
+            print("Moznost O : odemknout dveře ->", level.mistnosti[level.zamcene_chodby[hrac][-1]])
+            ok_vstupy.append("o")
+
         vstup = input("> ")
+        while not vstup in ok_vstupy:
+            print("Špatný vstup.")
+            vstup = input("> ")
 
-    if vstup == "x":
-        inventar["skore"] += zlato[hrac]
-        zlato[hrac] = 0
-    elif vstup == "k":
-        inventar["klic"] = True
-        klic = -1
-    elif vstup == "o":
-        cilova_mistnost = zamcene_chodby[hrac].pop()
-        chodby[hrac].append(cilova_mistnost)
-        print("Slyšíš jak cvaknul zámek a dveře se otevřely.")
-    else:
-        index_moznosti = int(vstup) - 1
-        hrac = kam_lze_jit[index_moznosti]
+        if vstup == "x":
+            skore += level.zlato[hrac]
+            level.zlato[hrac] = 0
+        elif vstup == "k":
+            inventar["klic"] = True
+            level.klic = -1
+        elif vstup == "o":
+            cilova_mistnost = level.zamcene_chodby[hrac].pop()
+            level.chodby[hrac].append(cilova_mistnost)
+            print("Slyšíš jak cvaknul zámek a dveře se otevřely.")
+            inventar["klic"] = False
 
-    kroky += 1
-    #break
+        elif vstup == "cheat":
+            print("Podvody jsou zakázaný hahaha")
+        else:
+            index_moznosti = int(vstup) - 1
+            hrac = kam_lze_jit[index_moznosti]
 
-print("Gratuluju, sebral jsi celkem,", inventar["skore"], "zlata za", kroky, "kroků")
+        kroky += 1
+        #break
+
+    print("Level splněn!")
+
+print("Gratuluju, sebral jsi celkem,", skore, "zlata za", kroky, "kroků")

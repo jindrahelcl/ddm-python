@@ -1,0 +1,1 @@
+https://www.umimeinformatiku.cz/programovani-programovani-v-pythonu

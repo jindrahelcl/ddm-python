@@ -7,10 +7,33 @@ konec = 5
 
 pozice = start
 cesty = [[start]]
+nalezena_cesta = None
+
+while cesty:
+    cesta = cesty.pop(0)
+    posledni_mistnost = cesta[-1]
+
+    if konec == posledni_mistnost:
+        nalezena_cesta = cesta
+        break
+
+    moznosti = []
+    for m in chodby[posledni_mistnost]:
+        if m not in cesta:
+            moznosti.append(m)
+
+    for m in moznosti:
+        cesty.append(cesta + [m])
+
+    print(cesty)
 
 
-while True:
-    cesta = cesty.
+if nalezena_cesta is not None:
+    print("nalezena cesta: ")
+    print(nalezena_cesta)
+    for m in nalezena_cesta:
+        print(mistnosti[m])
+
 
 
 

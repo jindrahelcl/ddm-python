@@ -18,7 +18,8 @@ vlevo = pygame.K_a
 
 
 pozice = [50, 50]
-rychlost = [0, 0]
+rychlost = [0, 0, 0, 0]
+
 
 while True:
     for event in pygame.event.get():
@@ -29,31 +30,30 @@ while True:
         if event.type == pygame.KEYDOWN:
             # zmackl klavesu
             if event.key == nahoru:
-                rychlost[1] = -5
+                rychlost[0] = 5
             if event.key == dolu:
                 rychlost[1] = 5
             if event.key == vlevo:
-                rychlost[0] = -5
+                rychlost[2] = 5
             if event.key == vpravo:
-                rychlost[0] = 5
+                rychlost[3] = 5
 
 
         if event.type == pygame.KEYUP:
             # pustil klavesu
             if event.key == nahoru:
-                rychlost[1] = 0
+                rychlost[0] = 0
             if event.key == dolu:
                 rychlost[1] = 0
             if event.key == vlevo:
-                rychlost[0] = 0
+                rychlost[2] = 0
             if event.key == vpravo:
-                rychlost[0] = 0
-
+                rychlost[3] = 0
 
     screen.fill(barvy.WHITE)
 
-    pozice[0] += rychlost[0]
-    pozice[1] += rychlost[1]
+    pozice[1] += rychlost[1] - rychlost[0]
+    pozice[0] += rychlost[3] - rychlost[2]
 
     if pozice[0] < 0:
         pozice[0] = 0

@@ -4,7 +4,10 @@ import barvy
 
 pygame.init()
 
-screen = pygame.display.set_mode((800, 600))
+width = 800
+height = 600
+
+screen = pygame.display.set_mode((width, height))
 clock = pygame.time.Clock()
 fps = 60
 
@@ -51,6 +54,15 @@ while True:
 
     pozice[0] += rychlost[0]
     pozice[1] += rychlost[1]
+
+    if pozice[0] < 0:
+        pozice[0] = 0
+    if pozice[1] < 0:
+        pozice[1] = 0
+    if pozice[0] > width - 60:
+        pozice[0] = width - 60
+    if pozice[1] > height - 30:
+        pozice[1] = height - 30
 
     pygame.draw.rect(
         screen, barvy.RED,

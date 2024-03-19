@@ -52,6 +52,9 @@ while True:
 
     screen.fill(barvy.WHITE)
 
+    # gravitace
+    rychlost[1] += 0.5
+
     pozice[1] += rychlost[1] - rychlost[0]
     pozice[0] += rychlost[3] - rychlost[2]
 
@@ -63,10 +66,11 @@ while True:
         pozice[0] = width - 60
     if pozice[1] > height - 30:
         pozice[1] = height - 30
+        rychlost[1] = 0
 
-    pygame.draw.rect(
-        screen, barvy.RED,
-        (pozice[0], pozice[1], 60, 30))
+    obdelnik = pygame.Rect(pozice[0], pozice[1], 60, 30)
+
+    pygame.draw.rect(screen, barvy.RED, obdelnik)
 
     pygame.display.update()
     clock.tick(fps)

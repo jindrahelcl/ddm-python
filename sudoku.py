@@ -1,4 +1,4 @@
-n = int(input("cislo "))
+#n = int(input("cislo "))
 
 # def fact(m):
 #     faktorial = 1
@@ -35,9 +35,6 @@ def fibonacci(m):
     return c
 
 
-
-print(fibonacci(n))
-
 s = [[5, 3, 0, 0, 7, 0, 0, 0, 0],
      [6, 0, 0, 1, 9, 5, 0, 0, 0],
      [0, 9, 8, 0, 0, 0, 0, 6, 0],
@@ -47,4 +44,30 @@ s = [[5, 3, 0, 0, 7, 0, 0, 0, 0],
      [0, 6, 0, 0, 0, 0, 2, 8, 0],
      [0, 0, 0, 4, 1, 9, 0, 0, 5],
      [0, 0, 0, 0, 8, 0, 0, 7, 9]]
+
+def mozne_doplnit(i, j):
+    cisla_v_sudoku = [True] * 9
+
+    for ii in range(9):
+        cislo = s[ii][j]
+        if cislo != 0:
+            cisla_v_sudoku[cislo - 1] = False
+
+    for jj in range(9):
+        cislo = s[i][jj]
+        if cislo != 0:
+            cisla_v_sudoku[cislo - 1] = False
+
+    blok_i = (i // 3) * 3
+    blok_j = (j // 3) * 3
+
+    for ii in range(blok_i, blok_i + 3):
+        for jj in range(blok_j, blok_j + 3):
+            cislo = s[ii][jj]
+            if cislo != 0:
+                cisla_v_sudoku[cislo - 1] = False
+
+    return cisla_v_sudoku
+
+print(mozne_doplnit(0, 2))
 

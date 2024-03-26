@@ -11,6 +11,11 @@ screen = pygame.display.set_mode((width, height))
 clock = pygame.time.Clock()
 fps = 60
 
+bg = pygame.image.load("obrazky/sachy/chessboard2.png")
+bg_w = bg.get_width()
+bg_h = bg.get_height()
+
+
 nahoru = pygame.K_w
 dolu = pygame.K_s
 vpravo = pygame.K_d
@@ -26,6 +31,7 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+
 
         if event.type == pygame.KEYDOWN:
             # zmackl klavesu
@@ -51,6 +57,9 @@ while True:
                 rychlost[3] = 0
 
     screen.fill(barvy.WHITE)
+    screen.blit(bg, (0, 0))
+    screen.blit(bg, (bg_w, 0))
+    screen.blit(bg, (bg_w * 2, 0))
 
     # gravitace
     rychlost[1] += 0.5

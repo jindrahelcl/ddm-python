@@ -10,6 +10,23 @@ for i in range(pocet):
 print(seznam_cisel)
 
 def setrid(seznam):
-    pass
 
-print(setrid(seznam_cisel))
+    prohozeno = True
+    while prohozeno:
+        prohozeno = False
+
+        # projdeme seznam:
+        for i in range(len(seznam) - 1):
+            a = seznam[i]
+            b = seznam[i + 1]
+
+            # vezmu cislo a porovnam s cislem za mnou.
+            print(a, b)
+            if a > b:
+                # kdyz je ten za mnou mensi, tak chci prohodit
+                seznam[i] = b
+                seznam[i + 1] = a
+                prohozeno = True
+
+setrid(seznam_cisel)
+print(seznam_cisel)

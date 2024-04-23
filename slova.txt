@@ -1,6 +1,7 @@
-presnidavka
-spzka
-housle
-tabule
-houba
+houpacka
 klavesnice
+houba
+lednice
+mys
+hmyz
+kurnik

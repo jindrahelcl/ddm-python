@@ -4,7 +4,7 @@ import time
 random.seed(0)
 seznam_cisel = []
 maximum = 100
-pocet = 5
+pocet = 50000
 
 for i in range(pocet):
     seznam_cisel.append(random.randint(0, maximum))

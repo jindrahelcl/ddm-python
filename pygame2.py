@@ -1,8 +1,8 @@
 import pygame
 import sys
+import math
 
 # inicializace
-
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
 clock = pygame.time.Clock()
@@ -15,7 +15,9 @@ cil.fill((0, 0, 200))
 
 
 pozice = [10, 100]
-pohyb = [False, False, False, False]
+smer = math.pi / 2
+pohyb = [False, False]
+toceni = [False, False]
 
 strela = pygame.Surface((10, 10))
 strela.fill((100, 100, 200))
@@ -31,8 +33,8 @@ def vystrel(pozice_hrace):
 while True:
     screen.fill((255, 255, 255))
 
-    pozice[0] += 2 * (pohyb[1] - pohyb[0])
-    pozice[1] += 2 * (pohyb[3] - pohyb[2])
+    pozice[0] += 2 * (pohyb[1] - pohyb[0]) * math.sin(smer)
+    pozice[1] += 2 * (pohyb[1] - pohyb[0]) * math.cos(smer)
 
     for s in vystrelene_strely:
         s[0] += 20
@@ -52,24 +54,24 @@ while True:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                pohyb[0] = True
+                toceni[0] = True
             if event.key == pygame.K_RIGHT:
-                pohyb[1] = True
+                toceni[1] = True
             if event.key == pygame.K_UP:
-                pohyb[2] = True
+                pohyb[1] = True
             if event.key == pygame.K_DOWN:
-                pohyb[3] = True
+                pohyb[0] = True
             if event.key == pygame.K_SPACE:
                 vystrel(pozice)
         if event.type == pygame.KEYUP:
-            if event.key == pygame.K_LEFT:
-                pohyb[0] = False
-            if event.key == pygame.K_RIGHT:
-                pohyb[1] = False
             if event.key == pygame.K_UP:
-                pohyb[2] = False
+                pohyb[1] = False
             if event.key == pygame.K_DOWN:
-                pohyb[3] = False
+                pohyb[0] = False
+            if event.key == pygame.K_LEFT:
+                toceni[0] = False
+            if event.key == pygame.K_RIGHT:
+                toceni[1] = False
 
     # vykresleni strel
     for pozice_strely in vystrelene_strely.copy():

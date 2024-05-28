@@ -1,14 +1,12 @@
 
 class Strela:
-    def __init__(self, pozice, smer):
+    def __init__(self, pozice, smer, rychlost=20):
         self.pozice = pozice
         self.smer = smer
+        self.rychlost = rychlost
 
     def nakresli(self, screen):
-        pass
+        screen.blit(screen, self.pozice)
 
     def posun(self):
-        # kod kterej zmeni pozici o smer kazdy frame
-        pass
-
-s = Strela([0, 50], 100)
+        self.pozice[0] += self.rychlost
